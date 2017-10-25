@@ -1,0 +1,44 @@
+# Camada Física da Computação
+# Exemplo socket server 
+## https://pymotw.com/2/socket/tcp.html
+
+import socket
+import sys
+
+class SocketClient:
+    def __init__(self):
+        self.porta = 1240
+
+    def start_socket(self, message):
+        print("Client: enviar dados")
+        print("Inicializando socket TCP/IP")
+        # Create a TCP/IP socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        # Bind the socket to the port
+        server_address = ('localhost', self.porta)
+        print("PORTA {}".format(self.porta))
+        sock.connect(server_address)
+
+        try:
+            # Send data
+            message = 'Teste de mensagem'
+            print(message)
+            sock.sendall(message)
+
+            amount_received = 0
+            amount_expected = len(message)
+            
+            while amount_received < amount_expected:
+                data = sock.recv(16)
+                amount_received += len(data)
+                print('received {}'.format(data))
+
+        finally:
+            # Clean up the connection
+            print('closing socket')
+            sock.close()
+            connection.close()
+
+if __name__ == "__main__":
+    SocketClient().start_socket('ola')
