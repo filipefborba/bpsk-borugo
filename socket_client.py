@@ -18,11 +18,11 @@ class SocketClient:
         # Bind the socket to the port
         server_address = ('localhost', self.porta)
         print("PORTA {}".format(self.porta))
-        sock.connect(server_address)
+        sock.bind(server_address)
 
         try:
             # Send data
-            message = 'Teste de mensagem'
+            message = message.encode('utf-8')
             print(message)
             sock.sendall(message)
 
@@ -38,7 +38,6 @@ class SocketClient:
             # Clean up the connection
             print('closing socket')
             sock.close()
-            connection.close()
 
 if __name__ == "__main__":
     SocketClient().start_socket('ola')

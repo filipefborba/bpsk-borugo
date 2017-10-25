@@ -7,13 +7,14 @@ import sys
 
 class SocketServer:
     def __init__(self):
-        self.porta = 1238
+        self.porta = 1234
 
     def start_socket(self):
         print("Server: receber dados")
         print("Inicializando socket TCP/IP")
         # Create a TCP/IP socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         # Bind the socket to the port
         server_address = ('localhost', self.porta)
@@ -34,7 +35,7 @@ class SocketServer:
                 while True:
                     data = connection.recv(16)
                     # print("{}".format(data))
-                    print("{}".format(str(data, 'utf-8')))
+                    print("{}".format(data))
                     if(len(data) <= 0):
                         break
 

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Wed Oct 25 13:53:30 2017
+# Generated: Wed Oct 25 17:57:43 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -167,41 +167,15 @@ class top_block(gr.top_block, Qt.QWidget):
         self.digital_lms_dd_equalizer_cc_0 = digital.lms_dd_equalizer_cc(8, .01, 1, BPSK)
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(2)
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(.05, 2, False)
-        self.digital_constellation_modulator_0 = digital.generic_mod(
-          constellation=BPSK,
-          differential=True,
-          samples_per_symbol=sps,
-          pre_diff_code=True,
-          excess_bw=0.25,
-          verbose=False,
-          log=False,
-          )
         self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
-        self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
         self.blocks_float_to_complex_0 = blocks.float_to_complex(1)
-        self.blocks_complex_to_real_1 = blocks.complex_to_real(1)
         self.blocks_complex_to_real_0 = blocks.complex_to_real(1)
-        self.blks2_tcp_source_0 = grc_blks2.tcp_source(
-        	itemsize=gr.sizeof_char*1,
-        	addr="127.0.0.1",
-        	port=1240,
-        	server=True,
-        )
         self.blks2_tcp_sink_0 = grc_blks2.tcp_sink(
         	itemsize=gr.sizeof_char*1,
         	addr="127.0.0.1",
-        	port=1238,
+        	port=1234,
         	server=False,
-        )
-        self.blks2_packet_encoder_0 = grc_blks2.packet_mod_b(grc_blks2.packet_encoder(
-        		samples_per_symbol=1,
-        		bits_per_symbol=1,
-        		preamble="",
-        		access_code="",
-        		pad_for_usrp=False,
-        	),
-        	payload_length=1,
         )
         self.blks2_packet_decoder_0 = grc_blks2.packet_demod_b(grc_blks2.packet_decoder(
         		access_code="",
@@ -210,29 +184,21 @@ class top_block(gr.top_block, Qt.QWidget):
         	),
         )
         self.audio_source_0 = audio.source(44100, "", True)
-        self.audio_sink_0 = audio.sink(44100, "", True)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, fc_slider, 1, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, fc_slider, 1, 0)
         self.analog_feedforward_agc_cc_0 = analog.feedforward_agc_cc(1024, 1)
 
         ##################################################
         # Connections
         ##################################################
         self.connect((self.analog_feedforward_agc_cc_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))    
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))    
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))    
         self.connect((self.audio_source_0, 0), (self.blocks_float_to_complex_0, 0))    
         self.connect((self.audio_source_0, 0), (self.qtgui_time_sink_x_0_0, 0))    
         self.connect((self.blks2_packet_decoder_0, 0), (self.blks2_tcp_sink_0, 0))    
-        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_constellation_modulator_0, 0))    
-        self.connect((self.blks2_tcp_source_0, 0), (self.blks2_packet_encoder_0, 0))    
         self.connect((self.blocks_complex_to_real_0, 0), (self.digital_binary_slicer_fb_0, 0))    
-        self.connect((self.blocks_complex_to_real_1, 0), (self.audio_sink_0, 0))    
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_multiply_xx_0_0, 0))    
-        self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_complex_to_real_1, 0))    
         self.connect((self.blocks_multiply_xx_0_0, 0), (self.low_pass_filter_0, 0))    
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.digital_diff_decoder_bb_0, 0))    
-        self.connect((self.digital_constellation_modulator_0, 0), (self.blocks_multiply_xx_0, 0))    
         self.connect((self.digital_costas_loop_cc_0, 0), (self.digital_lms_dd_equalizer_cc_0, 0))    
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blks2_packet_decoder_0, 0))    
         self.connect((self.digital_lms_dd_equalizer_cc_0, 0), (self.blocks_complex_to_real_0, 0))    
@@ -268,7 +234,6 @@ class top_block(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 1.1E3, .6E3, firdes.WIN_HAMMING, 6.76))
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
     def get_rrc_taps(self):
         return self.rrc_taps
@@ -283,7 +248,6 @@ class top_block(gr.top_block, Qt.QWidget):
     def set_fc_slider(self, fc_slider):
         self.fc_slider = fc_slider
         self.analog_sig_source_x_0_0.set_frequency(self.fc_slider)
-        self.analog_sig_source_x_0.set_frequency(self.fc_slider)
 
     def get_BPSK(self):
         return self.BPSK
