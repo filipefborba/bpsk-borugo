@@ -7,14 +7,14 @@ import sys
 
 class SocketClient:
     def __init__(self):
-        self.porta = 1260
+        self.porta = 1240
 
     def start_socket(self, message):
         print("Client: enviar dados")
         print("Inicializando socket TCP/IP")
         # Create a TCP/IP socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
         # Bind the socket to the port
         server_address = ('localhost', self.porta)
         print("PORTA {}".format(self.porta))
@@ -22,7 +22,7 @@ class SocketClient:
 
         try:
             # Send data
-            message = b'hugaoeborberalskdjalksdjlkasdjaskldjaslkdjakdjlsadjskajdaslkdjaldjsalkdjsaas'
+            message = b'Teste de mensagem'
             print(message)
             sock.sendall(message)
 

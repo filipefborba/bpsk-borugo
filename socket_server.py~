@@ -7,7 +7,7 @@ import sys
 
 class SocketServer:
     def __init__(self):
-        self.porta = 1250
+        self.porta = 1238
 
     def start_socket(self):
         print("Server: receber dados")
@@ -27,7 +27,6 @@ class SocketServer:
             # Wait for a connection
             print("waiting for a connection")
             connection, client_address = sock.accept()
-
 
             try:
                 print(" connection from {}".format(client_address))
