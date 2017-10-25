@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
+from socket_server import SocketServer
 
 
 def sendmessage():
@@ -23,6 +24,7 @@ def on_server_active(checkbox, value):
         isClient.active = False
         ed.hint_text = 'aguardando mensagem'
         bt.disabled = True
+        SocketServer().start_socket()
 
 def build():
     layout = FloatLayout()

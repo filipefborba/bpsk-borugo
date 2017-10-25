@@ -18,7 +18,7 @@ class SocketClient:
         # Bind the socket to the port
         server_address = ('localhost', self.porta)
         print("PORTA {}".format(self.porta))
-        sock.connect(server_address)
+        sock.bind(server_address)
 
         try:
             # Send data
