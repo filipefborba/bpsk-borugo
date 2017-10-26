@@ -48,5 +48,5 @@ class SocketServer:
                 # Clean up the connection
                 connection.close()
 
-if __name__ == "__main__":
-    SocketServer().start_socket()
+# if __name__ == "__main__":
+#     SocketServer().start_socket()

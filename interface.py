@@ -5,7 +5,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
-from socket_server import SocketServer
+# from socket_server import SocketServer
 from socket_client import SocketClient
 from threading import Thread
 
@@ -13,7 +13,7 @@ def listen():
     SocketServer().start_socket()
 
 def send(message):
-    SocketClient().start_socket(message)
+    socket.start_socket(message)
 
 
 def handleClick():
@@ -57,8 +57,8 @@ def build():
     isServer.y  =650
     isServer.bind(active=on_server_active)
     layout.add_widget(isServer)
-    ed = TextInput(hint_text='digite a mensagem a ser enviada')
     global ed
+    ed = TextInput(hint_text='digite a mensagem a ser enviada')
     ed.size_hint = None, None
     ed.height = 500
     ed.width = 400
@@ -74,6 +74,8 @@ def build():
     layout.add_widget(bt)
     return layout
 
+global socket    
+socket = SocketClient()
 janela = App()
 Window.size = 400,700
 janela.build = build
