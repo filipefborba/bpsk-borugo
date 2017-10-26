@@ -31,6 +31,7 @@ def on_client_active(checkbox, value):
 def on_server_active(checkbox, value):
     if value:
         isClient.active = False
+        ed.text = ''
         ed.hint_text = 'aguardando mensagem'
         bt.disabled = True
         thread = Thread(target = listen)
