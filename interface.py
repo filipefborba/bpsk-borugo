@@ -6,11 +6,19 @@ from kivy.core.window import Window
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
 from socket_server import SocketServer
+from socket_client import SocketClient
+from threading import Thread
+
+def listen():
+    SocketServer().start_socket()
+
+def send(message):
+    SocketClient().start_socket(message)
 
 
-def sendmessage():
-    print(ed.text)
-
+def handleClick():
+        thread = Thread(target = send, args = (ed.text, ))
+        thread.start()
 
 def on_client_active(checkbox, value):
     if value:
@@ -19,12 +27,14 @@ def on_client_active(checkbox, value):
         bt.height = 60
         bt.disabled = False
 
+
 def on_server_active(checkbox, value):
     if value:
         isClient.active = False
         ed.hint_text = 'aguardando mensagem'
         bt.disabled = True
-        SocketServer().start_socket()
+        thread = Thread(target = listen)
+        thread.start()
 
 def build():
     layout = FloatLayout()
@@ -59,7 +69,7 @@ def build():
     bt.width = 400
     bt.height = 60
     bt.y = 20
-    bt.on_press = sendmessage
+    bt.on_press = handleClick
     layout.add_widget(bt)
     return layout
 

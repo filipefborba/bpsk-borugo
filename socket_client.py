@@ -22,7 +22,9 @@ class SocketClient:
 
         try:
             # Send data
-            message = b'hugaoeborberalskdjalksdjlkasdjaskldjaslkdjakdjlsadjskajdaslkdjaldjsalkdjsaas'
+            b = bytearray()
+            b.extend(map(ord, message))
+            message = b
             print(message)
             sock.sendall(message)
 
@@ -39,5 +41,4 @@ class SocketClient:
             print('closing socket')
             sock.close()
 
-if __name__ == "__main__":
-    SocketClient().start_socket('ola')
+
