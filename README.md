@@ -9,5 +9,19 @@ O projeto consiste em duas duplas de arquivos, um python e um do GNURadio. Uma d
 ## Frequência de Transmissão e Banda ocupada
 
 ## TX
+#### Gráfico no tempo e em frequência do sinal não codificado
+![tx_naocodificado](https://i.imgur.com/mom96tB.png)
+#### Gráfico no tempo e em frequência do sinal codificado (após o constellation modulator)
+![tx_codificado](https://i.imgur.com/uCtQtnc.png)
+#### Gráfico no tempo e em frequência do sinal modulado
+![tx_modulado](https://i.imgur.com/Iv3SG8m.png)
+#### Diagrama de constelação.
+![tx_constellation](https://i.imgur.com/8w49IdK.png)
 
 ## RX
+#### Sinal de áudio recebido no tempo e em frequência
+![rx_naocodificado](https://i.imgur.com/hb5gOb9.png)
+#### Sinal de áudio demodulado no tempo e em frequência
+![rx_demodulado](https://i.imgur.com/GF3tIkf.png)
+#### Diagrama de constelação.
+![rx_constellation](https://i.imgur.com/OoonX36.png)

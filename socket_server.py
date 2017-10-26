@@ -4,6 +4,7 @@
 
 import socket
 import sys
+from interface import ed
 
 class SocketServer:
     def __init__(self):
@@ -29,10 +30,14 @@ class SocketServer:
             print("waiting for a connection")
             connection, client_address = sock.accept()
 
+
             try:
                 print(" connection from {}".format(client_address))
                 # Receive the data in small chunks and retransmit it
                 while True:
+                    old_message = ed.text
+                    new_message = ed.text + ' ' + '{}'.format(data)
+                    ed.text = new_message
                     data = connection.recv(16)
                     # print("{}".format(data))
                     print("{}".format(data))
