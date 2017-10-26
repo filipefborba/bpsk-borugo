@@ -10,6 +10,7 @@ O projeto consiste em duas duplas de arquivos, um python e um do GNURadio. Uma d
 
 ## TX
 #### Gráfico no tempo e em frequência do sinal não codificado
+![tx_naocodificado](https://i.imgur.com/mom96tB.png)
 #### Gráfico no tempo e em frequência do sinal codificado (após o constellation modulator)
 ![tx_codificado](https://i.imgur.com/uCtQtnc.png)
 #### Gráfico no tempo e em frequência do sinal modulado
