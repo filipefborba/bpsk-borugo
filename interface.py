@@ -10,7 +10,9 @@ from socket_client import SocketClient
 from threading import Thread
 
 def listen():
-    SocketServer().start_socket()
+    while True:
+         message = SocketServer().start_socket()
+         print(ed.text + ' ' + message)
 
 def send(message):
     socket.start_socket(message)
