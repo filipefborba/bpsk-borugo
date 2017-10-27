@@ -5,14 +5,13 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
-# from socket_server import SocketServer
+from socket_server import SocketServer
 from socket_client import SocketClient
 from threading import Thread
 
 def listen():
-    while True:
-         message = SocketServer().start_socket()
-         print(ed.text + ' ' + message)
+    message = socket.start_socket(ed)
+    print(ed.text + ' ' + message)
 
 def send(message):
     socket.start_socket(message)
@@ -77,7 +76,7 @@ def build():
     return layout
 
 global socket    
-socket = SocketClient()
+socket = SocketServer()
 janela = App()
 Window.size = 400,700
 janela.build = build
